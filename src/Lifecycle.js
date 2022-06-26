@@ -1,36 +1,28 @@
 import React, { useEffect, useState } from "react";
 
-const Lifecycle = ()=> {
-
-    const [count, setCount] = useState(0);
-    const [text, setText] = useState("");
-
-    useEffect( ()=>{
-        console.log("Mount!!");
-    }, []);
-
-    useEffect(()=>{
-        console.log("Update!")
-    });
-
-    useEffect(()=>{
-        console.log(`count is update : ${count}`);
-    }, [count]);
+const UnmountTest = () => {
 
     useEffect(()=> {
-        console.log(`text is update : ${text}`);
-    }, [text])
+        console.log("Mount!");
+        return ()=> {
+            console.log("UnMount!")
+        };
+    }, [])
 
-    return <div style={{ padding: 20 }}>
-        <div>
-            {count}
-            <button onClick={()=>setCount(count + 1)}>+</button>
+    return <div>Unmount Testing Component</div>
+}
+
+const Lifecycle = ()=> {
+
+    const [ isVisible, setIsVisible ] = useState(false);
+    const toggle = () => setIsVisible(!isVisible);
+
+    return (
+        <div style={{ padding: 20 }}>
+            <button onClick={toggle}>ON/OFF</button>
+            {isVisible && <UnmountTest/>}
         </div>
-        <div>
-            <input value={text}
-                   onChange={(e)=> setText(e.target.value)} />
-        </div>
-    </div>;
+    );
 };
 
 export  default Lifecycle;
