@@ -2,6 +2,7 @@ import './App.css';
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
 import {useState, useRef, useEffect, useMemo} from "react";
+import OptimizeTest from "./OptimizeTest";
 
 function App() {
     const [data, setData ] = useState([]);
@@ -56,7 +57,7 @@ function App() {
     }
 
     const getDiaryAnalysis = useMemo(() => {
-        console.log("일기 분석 시작");
+        //console.log("일기 분석 시작");
 
         const goodCount = data.filter((it)=>it.emotion >= 3).length;
         const badCount = data.length - goodCount;
@@ -68,6 +69,7 @@ function App() {
 
     return (
         <div className="App">
+            <OptimizeTest/>
             <DiaryEditor onCreate={onCreate}/>
             <div>전체 일기 : {data.length}</div>
             <div>기분 좋은 일기 개수 : {goodCount} </div>
