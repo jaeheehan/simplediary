@@ -5,9 +5,9 @@ const DiaryEditor = ({onCreate}) => {
     const authorInput = useRef();
     const contentInput = useRef();
 
-    useEffect(()=> {
+    /*useEffect(()=> {
         console.log("DiaryEditor 렌더")
-    });
+    });*/
 
     const [state, setState ] = useState({
         author: "",
